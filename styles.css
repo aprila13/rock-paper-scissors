@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@700&family=Montserrat&display=swap');
+
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+.container {
+  text-align: center;
+  margin-top: 14%;
+  height: 72vh;
+}
+
+h2 {
+  font-family: 'Balsamiq Sans', "cursive";
+  color: #806ffc;
+  font-size: 2rem;
+}
+
+button {
+  font-family: 'Verdana', 'sans-serif';
+  padding: 10px 15px;
+  margin: 10px;
+  margin-top: 30px;
+  background-color: white;
+  color: #806ffc;
+  border: 1px solid #806ffc;
+  border-radius: 50px;
+  outline: none;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+#reload {
+  margin-top: 20px;
+  border-radius: 50px;
+}
+
+.fas {
+  margin-right: 10px;
+  font-size: 1.3rem;
+}
+
+
