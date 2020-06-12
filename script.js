@@ -7,7 +7,6 @@
     cpuScore = document.getElementById('cpuScore'),
     youScore = document.getElementById('youScore')
     container = document.getElementById('container'),
-    // signIn = document.getElementById('sign-in'),
     signInContainer = document.querySelector('.signInContainer');
 
 
@@ -21,68 +20,96 @@
     scissors.addEventListener('click', scissorsFunc);
     reload.addEventListener('click', reloadPage)
 
-
+    //Shows game
    function showGame(){
      container.style.display = 'block';
      signInContainer.style.display ='none';
    }
 
-    //Game Functions
-    function rockFunc(){
-      if (cpuSelect <= 4) {
-        message.innerHTML = "<h1>The computer selected paper.  You win!</h1>";
-        message.style.color = 'green';
-        message.style.fontFamily = 'Montserrat', "sans-serif";
-        message.style.paddingTop = '20px';
-      } else if (cpuSelect > 4 && cpuSelect <= 7){
-        message.innerHTML = "<h1>The computer selected scissors.  You win!</h1>";
-        message.style.color = 'green';
-        message.style.fontFamily = 'Montserrat', "sans-serif";
-        message.style.paddingTop = '20px';
-      } else {
-        message.innerHTML = "<h1>The computer selected rock.  It is a tie!</h1>";
-        message.style.color = '#3c3b3d';
-        message.style.fontFamily = 'Montserrat', "sans-serif";
-        message.style.paddingTop = '20px';
+   function calculateWinner(action) {
+     let winText = 'You win!';
+     let tieText = 'It is a tie!';
+     let loseText = 'You lose.';
+     let resultText = '';
+     let messageColor = '';
+
+    // check if computer select paper
+    if (cpuSelect <= 4) {
+      switch(action) {
+        case 'rock':
+          resultText = 'paper. ' + loseText;
+          messageColor = 'red';
+          break;
+        case 'paper':
+          resultText = 'paper. ' + tieText;
+          messageColor = '#3c3b3d';
+          break;
+        case 'scissors':
+          resultText = 'paper. ' + winText;
+          messageColor = 'green';
+          break;
+        default: 
+          resultText = 'paper. ' + tieText;
+          messageColor = '#3c3b3d';
       }
+    } else if (cpuSelect > 4 && cpuSelect <= 7){
+
+      // check if computer select scissors
+      switch(action) {
+        case 'rock':
+          resultText = 'scissors. ' + winText;
+          messageColor = 'green';
+          break;
+        case 'paper':
+          resultText = 'scissors. ' + loseText;
+          messageColor = 'red';
+          break;
+        case 'scissors':
+          resultText = 'scissors. ' + tieText;
+          messageColor = '#3c3b3d';
+          break;
+        default: 
+          resultText = 'scissors. ' + tieText;
+          messageColor = '#3c3b3d';
+      }
+    } else {
+      // check if computer select rock
+      switch(action) {
+        case 'rock':
+          resultText = 'rock. ' + tieText;
+          messageColor = '#3c3b3d';
+          break;
+        case 'paper':
+          resultText = 'rock. ' + winText;
+          messageColor = 'green';
+          break;
+        case 'scissors':
+          resultText = 'rock. ' + loseText;
+          messageColor = 'red';
+          break;
+        default: 
+          resultText = 'rock. ' + tieText;
+          messageColor = '#3c3b3d';
+      }
+    }
+    message.innerHTML = "<h1>The computer selected " + resultText+ "</h1>";
+    
+    // message styling
+    message.style.color = messageColor;
+    message.style.fontFamily = 'Montserrat', "sans-serif";
+    message.style.paddingTop = '20px';
+   }
+    //Game Functions
+    function rockFunc() {
+      calculateWinner('rock');
     }
 
     function scissorsFunc() {
-      if (cpuSelect <= 4) {
-        message.innerHTML = "<h1>The computer selected paper.  You win!</h1>";
-        message.style.color = 'green';
-        message.style.fontFamily = 'Montserrat', "sans-serif";
-        message.style.paddingTop = '20px';
-      } else if (cpuSelect > 4 && cpuSelect <= 7){
-        message.innerHTML = "<h1>The computer selected scissors.  It is a tie!</h1>";
-        message.style.color = '#3c3b3d';
-        message.style.fontFamily = 'Montserrat', "sans-serif";
-        message.style.paddingTop = '20px';
-      } else {
-        message.innerHTML = "<h1>The computer selected rock.  You lose!</h1>";
-        message.style.color = 'red';
-        message.style.fontFamily = 'Montserrat', "sans-serif";
-        message.style.paddingTop = '20px';
-      }
+      calculateWinner('scissors');
     }
 
     function paperFunc() {
-      if (cpuSelect <= 4) {
-        message.innerHTML = "<h1>The computer selected paper.  It is a tie!</h1>";
-        message.style.color = '#3c3b3d';
-        message.style.fontFamily = 'Montserrat', "sans-serif";
-        message.style.paddingTop = '20px';
-      } else if (cpuSelect > 4 && cpuSelect <= 7){
-        message.innerHTML = "<h1>The computer selected scissors.  You lose!</h1>";
-        message.style.color = 'red';
-        message.style.fontFamily = 'Montserrat', "sans-serif";
-        message.style.paddingTop = '20px';
-      } else {
-        message.innerHTML = "<h1>The computer selected rock.  You lose!</h1>";
-        message.style.color = 'red';
-        message.style.fontFamily = 'Montserrat', "sans-serif";
-        message.style.paddingTop = '20px';
-      }
+      calculateWinner('paper');
     }
 
     function reloadPage(){
